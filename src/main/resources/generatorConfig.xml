@@ -13,7 +13,7 @@
 
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://localhost:3306/ses?useSSL=true"
+                connectionURL="jdbc:mysql://localhost:3306/ses?useSSL=true&amp;characterEncoding=UTF8"
                 userId="root"
                 password="xx/50536785">
         </jdbcConnection>

@@ -13,3 +13,4 @@ buildNumber.properties
 /src/main/java/com/
 /src/main/resources/com/
 /src/main/java/Executor.java
+/src/main/resources/generatorConfig.xml
