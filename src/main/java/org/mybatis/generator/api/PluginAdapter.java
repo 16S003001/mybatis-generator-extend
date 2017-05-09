@@ -33,9 +33,9 @@ import org.mybatis.generator.config.Context;
  * <p>
  * This adapter does not implement the <tt>validate</tt> method - all plugins
  * must perform validation.
- * 
+ *
  * @author Jeff Butler
- * 
+ *
  */
 public abstract class PluginAdapter implements Plugin {
     protected Context context;
@@ -353,13 +353,23 @@ public abstract class PluginAdapter implements Plugin {
         return true;
     }
 
-    public boolean clientInsertSelectiveMethodGenerated(Method method,
-            Interface interfaze, IntrospectedTable introspectedTable) {
+    @Override
+    public boolean sqlMapSelectSelectiveElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
         return true;
     }
 
     public boolean clientInsertSelectiveMethodGenerated(Method method,
-            TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+                                                        Interface interfaze, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    @Override
+    public boolean clientSelectSelectiveMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+        return true;
+    }
+
+    public boolean clientInsertSelectiveMethodGenerated(Method method,
+                                                        TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         return true;
     }
 

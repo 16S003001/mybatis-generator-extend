@@ -100,6 +100,11 @@ public class RulesDelegate implements Rules {
         return rules.generateInsertSelective();
     }
 
+    @Override
+    public boolean generateSelectSelective() {
+        return rules.generateSelectSelective();
+    }
+
     public boolean generatePrimaryKeyClass() {
         return rules.generatePrimaryKeyClass();
     }

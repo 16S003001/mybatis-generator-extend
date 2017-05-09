@@ -28,10 +28,6 @@
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.mapper" targetProject="src/main/java"/>
 
-        <table tableName="user"
-               enableCountByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               enableUpdateByExample="false"/>
+        <table tableName="user"/>
     </context>
 </generatorConfiguration>

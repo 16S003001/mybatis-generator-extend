@@ -1,17 +1,17 @@
 /**
- *    Copyright 2006-2016 the original author or authors.
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
+ * Copyright 2006-2016 the original author or authors.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.mybatis.generator.config;
 
@@ -37,89 +37,138 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
  * @author Jeff Butler
  */
 public class TableConfiguration extends PropertyHolder {
-    
-    /** The insert statement enabled. */
+
+    /**
+     * The insert statement enabled.
+     */
     private boolean insertStatementEnabled;
 
-    /** The select by primary key statement enabled. */
+    private boolean selectSelectiveStatementEnabled;
+
+    /**
+     * The select by primary key statement enabled.
+     */
     private boolean selectByPrimaryKeyStatementEnabled;
 
-    /** The select by example statement enabled. */
+    /**
+     * The select by example statement enabled.
+     */
     private boolean selectByExampleStatementEnabled;
 
-    /** The update by primary key statement enabled. */
+    /**
+     * The update by primary key statement enabled.
+     */
     private boolean updateByPrimaryKeyStatementEnabled;
 
-    /** The delete by primary key statement enabled. */
+    /**
+     * The delete by primary key statement enabled.
+     */
     private boolean deleteByPrimaryKeyStatementEnabled;
 
-    /** The delete by example statement enabled. */
+    /**
+     * The delete by example statement enabled.
+     */
     private boolean deleteByExampleStatementEnabled;
 
-    /** The count by example statement enabled. */
+    /**
+     * The count by example statement enabled.
+     */
     private boolean countByExampleStatementEnabled;
 
-    /** The update by example statement enabled. */
+    /**
+     * The update by example statement enabled.
+     */
     private boolean updateByExampleStatementEnabled;
 
-    /** The column overrides. */
+    /**
+     * The column overrides.
+     */
     private List<ColumnOverride> columnOverrides;
 
-    /** The ignored columns. */
+    /**
+     * The ignored columns.
+     */
     private Map<IgnoredColumn, Boolean> ignoredColumns;
 
-    /** The generated key. */
+    /**
+     * The generated key.
+     */
     private GeneratedKey generatedKey;
 
-    /** The select by primary key query id. */
+    /**
+     * The select by primary key query id.
+     */
     private String selectByPrimaryKeyQueryId;
 
-    /** The select by example query id. */
+    /**
+     * The select by example query id.
+     */
     private String selectByExampleQueryId;
 
-    /** The catalog. */
+    /**
+     * The catalog.
+     */
     private String catalog;
-    
-    /** The schema. */
+
+    /**
+     * The schema.
+     */
     private String schema;
-    
-    /** The table name. */
+
+    /**
+     * The table name.
+     */
     private String tableName;
-    
-    /** The domain object name. */
+
+    /**
+     * The domain object name.
+     */
     private String domainObjectName;
-    
-    /** The alias. */
+
+    /**
+     * The alias.
+     */
     private String alias;
-    
-    /** The model type. */
+
+    /**
+     * The model type.
+     */
     private ModelType modelType;
-    
-    /** The wildcard escaping enabled. */
+
+    /**
+     * The wildcard escaping enabled.
+     */
     private boolean wildcardEscapingEnabled;
-    
-    /** The configured model type. */
+
+    /**
+     * The configured model type.
+     */
     private String configuredModelType;
-    
-    /** The delimit identifiers. */
+
+    /**
+     * The delimit identifiers.
+     */
     private boolean delimitIdentifiers;
 
-    /** The column renaming rule. */
+    /**
+     * The column renaming rule.
+     */
     private ColumnRenamingRule columnRenamingRule;
-    
-    /** The is all column delimiting enabled. */
+
+    /**
+     * The is all column delimiting enabled.
+     */
     private boolean isAllColumnDelimitingEnabled;
-    
+
     private String mapperName;
     private String sqlProviderName;
-    
+
     private List<IgnoredColumnPattern> ignoredColumnPatterns = new ArrayList<IgnoredColumnPattern>();
 
     /**
      * Instantiates a new table configuration.
      *
-     * @param context
-     *            the context
+     * @param context the context
      */
     public TableConfiguration(Context context) {
         super();
@@ -130,13 +179,15 @@ public class TableConfiguration extends PropertyHolder {
         ignoredColumns = new HashMap<IgnoredColumn, Boolean>();
 
         insertStatementEnabled = true;
+        selectSelectiveStatementEnabled = true;
         selectByPrimaryKeyStatementEnabled = true;
-        selectByExampleStatementEnabled = true;
         updateByPrimaryKeyStatementEnabled = true;
         deleteByPrimaryKeyStatementEnabled = true;
-        deleteByExampleStatementEnabled = true;
-        countByExampleStatementEnabled = true;
-        updateByExampleStatementEnabled = true;
+
+        selectByExampleStatementEnabled = false;
+        deleteByExampleStatementEnabled = false;
+        countByExampleStatementEnabled = false;
+        updateByExampleStatementEnabled = false;
     }
 
     /**
@@ -151,8 +202,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the delete by primary key statement enabled.
      *
-     * @param deleteByPrimaryKeyStatementEnabled
-     *            the new delete by primary key statement enabled
+     * @param deleteByPrimaryKeyStatementEnabled the new delete by primary key statement enabled
      */
     public void setDeleteByPrimaryKeyStatementEnabled(
             boolean deleteByPrimaryKeyStatementEnabled) {
@@ -168,14 +218,21 @@ public class TableConfiguration extends PropertyHolder {
         return insertStatementEnabled;
     }
 
+    public boolean isSelectSelectiveStatementEnabled() {
+        return selectSelectiveStatementEnabled;
+    }
+
     /**
      * Sets the insert statement enabled.
      *
-     * @param insertStatementEnabled
-     *            the new insert statement enabled
+     * @param insertStatementEnabled the new insert statement enabled
      */
     public void setInsertStatementEnabled(boolean insertStatementEnabled) {
         this.insertStatementEnabled = insertStatementEnabled;
+    }
+
+    public void setSelectSelectiveStatementEnabled(boolean selectSelectiveStatementEnabled) {
+        this.selectSelectiveStatementEnabled = selectSelectiveStatementEnabled;
     }
 
     /**
@@ -190,8 +247,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the select by primary key statement enabled.
      *
-     * @param selectByPrimaryKeyStatementEnabled
-     *            the new select by primary key statement enabled
+     * @param selectByPrimaryKeyStatementEnabled the new select by primary key statement enabled
      */
     public void setSelectByPrimaryKeyStatementEnabled(
             boolean selectByPrimaryKeyStatementEnabled) {
@@ -210,8 +266,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the update by primary key statement enabled.
      *
-     * @param updateByPrimaryKeyStatementEnabled
-     *            the new update by primary key statement enabled
+     * @param updateByPrimaryKeyStatementEnabled the new update by primary key statement enabled
      */
     public void setUpdateByPrimaryKeyStatementEnabled(
             boolean updateByPrimaryKeyStatementEnabled) {
@@ -221,8 +276,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Checks if is column ignored.
      *
-     * @param columnName
-     *            the column name
+     * @param columnName the column name
      * @return true, if is column ignored
      */
     public boolean isColumnIgnored(String columnName) {
@@ -233,7 +287,7 @@ public class TableConfiguration extends PropertyHolder {
                 return true;
             }
         }
-        
+
         for (IgnoredColumnPattern ignoredColumnPattern : ignoredColumnPatterns) {
             if (ignoredColumnPattern.matches(columnName)) {
                 return true;
@@ -246,8 +300,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Adds the ignored column.
      *
-     * @param ignoredColumn
-     *            the ignored column
+     * @param ignoredColumn the ignored column
      */
     public void addIgnoredColumn(IgnoredColumn ignoredColumn) {
         ignoredColumns.put(ignoredColumn, Boolean.FALSE);
@@ -260,8 +313,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Adds the column override.
      *
-     * @param columnOverride
-     *            the column override
+     * @param columnOverride the column override
      */
     public void addColumnOverride(ColumnOverride columnOverride) {
         columnOverrides.add(columnOverride);
@@ -312,8 +364,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the select by example statement enabled.
      *
-     * @param selectByExampleStatementEnabled
-     *            the new select by example statement enabled
+     * @param selectByExampleStatementEnabled the new select by example statement enabled
      */
     public void setSelectByExampleStatementEnabled(
             boolean selectByExampleStatementEnabled) {
@@ -323,8 +374,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * May return null if the column has not been overridden.
      *
-     * @param columnName
-     *            the column name
+     * @param columnName the column name
      * @return the column override (if any) related to this column
      */
     public ColumnOverride getColumnOverride(String columnName) {
@@ -364,8 +414,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the select by example query id.
      *
-     * @param selectByExampleQueryId
-     *            the new select by example query id
+     * @param selectByExampleQueryId the new select by example query id
      */
     public void setSelectByExampleQueryId(String selectByExampleQueryId) {
         this.selectByExampleQueryId = selectByExampleQueryId;
@@ -383,8 +432,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the select by primary key query id.
      *
-     * @param selectByPrimaryKeyQueryId
-     *            the new select by primary key query id
+     * @param selectByPrimaryKeyQueryId the new select by primary key query id
      */
     public void setSelectByPrimaryKeyQueryId(String selectByPrimaryKeyQueryId) {
         this.selectByPrimaryKeyQueryId = selectByPrimaryKeyQueryId;
@@ -402,8 +450,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the delete by example statement enabled.
      *
-     * @param deleteByExampleStatementEnabled
-     *            the new delete by example statement enabled
+     * @param deleteByExampleStatementEnabled the new delete by example statement enabled
      */
     public void setDeleteByExampleStatementEnabled(
             boolean deleteByExampleStatementEnabled) {
@@ -417,7 +464,9 @@ public class TableConfiguration extends PropertyHolder {
      */
     public boolean areAnyStatementsEnabled() {
         return selectByExampleStatementEnabled
-                || selectByPrimaryKeyStatementEnabled || insertStatementEnabled
+                || selectByPrimaryKeyStatementEnabled
+                || insertStatementEnabled
+                || selectSelectiveStatementEnabled
                 || updateByPrimaryKeyStatementEnabled
                 || deleteByExampleStatementEnabled
                 || deleteByPrimaryKeyStatementEnabled
@@ -428,8 +477,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the generated key.
      *
-     * @param generatedKey
-     *            the new generated key
+     * @param generatedKey the new generated key
      */
     public void setGeneratedKey(GeneratedKey generatedKey) {
         this.generatedKey = generatedKey;
@@ -447,8 +495,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the alias.
      *
-     * @param alias
-     *            the new alias
+     * @param alias the new alias
      */
     public void setAlias(String alias) {
         this.alias = alias;
@@ -466,8 +513,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the catalog.
      *
-     * @param catalog
-     *            the new catalog
+     * @param catalog the new catalog
      */
     public void setCatalog(String catalog) {
         this.catalog = catalog;
@@ -485,8 +531,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the domain object name.
      *
-     * @param domainObjectName
-     *            the new domain object name
+     * @param domainObjectName the new domain object name
      */
     public void setDomainObjectName(String domainObjectName) {
         this.domainObjectName = domainObjectName;
@@ -504,8 +549,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the schema.
      *
-     * @param schema
-     *            the new schema
+     * @param schema the new schema
      */
     public void setSchema(String schema) {
         this.schema = schema;
@@ -523,8 +567,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the table name.
      *
-     * @param tableName
-     *            the new table name
+     * @param tableName the new table name
      */
     public void setTableName(String tableName) {
         this.tableName = tableName;
@@ -543,9 +586,9 @@ public class TableConfiguration extends PropertyHolder {
      * This method returns a List of Strings. The values are the columns
      * that were specified to be ignored in the table, but do not exist in the
      * table.
-     * 
+     *
      * @return a List of Strings - the columns that were improperly configured
-     *         as ignored columns
+     * as ignored columns
      */
     public List<String> getIgnoredColumnsInError() {
         List<String> answer = new ArrayList<String>();
@@ -572,8 +615,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the configured model type.
      *
-     * @param configuredModelType
-     *            the new configured model type
+     * @param configuredModelType the new configured model type
      */
     public void setConfiguredModelType(String configuredModelType) {
         this.configuredModelType = configuredModelType;
@@ -592,8 +634,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the wildcard escaping enabled.
      *
-     * @param wildcardEscapingEnabled
-     *            the new wildcard escaping enabled
+     * @param wildcardEscapingEnabled the new wildcard escaping enabled
      */
     public void setWildcardEscapingEnabled(boolean wildcardEscapingEnabled) {
         this.wildcardEscapingEnabled = wildcardEscapingEnabled;
@@ -627,6 +668,10 @@ public class TableConfiguration extends PropertyHolder {
 
         if (!insertStatementEnabled) {
             xmlElement.addAttribute(new Attribute("enableInsert", "false")); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+
+        if (!selectSelectiveStatementEnabled) {
+            xmlElement.addAttribute(new Attribute("enableSelectSelective", "false"));
         }
 
         if (!selectByPrimaryKeyStatementEnabled) {
@@ -691,7 +736,7 @@ public class TableConfiguration extends PropertyHolder {
             xmlElement
                     .addAttribute(new Attribute("delimitIdentifiers", "true")); //$NON-NLS-1$ //$NON-NLS-2$
         }
-        
+
         if (stringHasValue(mapperName)) {
             xmlElement.addAttribute(new Attribute(
                     "mapperName", mapperName)); //$NON-NLS-1$
@@ -717,7 +762,7 @@ public class TableConfiguration extends PropertyHolder {
                 xmlElement.addElement(ignoredColumn.toXmlElement());
             }
         }
-        
+
         for (IgnoredColumnPattern ignoredColumnPattern : ignoredColumnPatterns) {
             xmlElement.addElement(ignoredColumnPattern.toXmlElement());
         }
@@ -752,8 +797,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the delimit identifiers.
      *
-     * @param delimitIdentifiers
-     *            the new delimit identifiers
+     * @param delimitIdentifiers the new delimit identifiers
      */
     public void setDelimitIdentifiers(boolean delimitIdentifiers) {
         this.delimitIdentifiers = delimitIdentifiers;
@@ -771,8 +815,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the count by example statement enabled.
      *
-     * @param countByExampleStatementEnabled
-     *            the new count by example statement enabled
+     * @param countByExampleStatementEnabled the new count by example statement enabled
      */
     public void setCountByExampleStatementEnabled(
             boolean countByExampleStatementEnabled) {
@@ -791,8 +834,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the update by example statement enabled.
      *
-     * @param updateByExampleStatementEnabled
-     *            the new update by example statement enabled
+     * @param updateByExampleStatementEnabled the new update by example statement enabled
      */
     public void setUpdateByExampleStatementEnabled(
             boolean updateByExampleStatementEnabled) {
@@ -802,10 +844,8 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Validate.
      *
-     * @param errors
-     *            the errors
-     * @param listPosition
-     *            the list position
+     * @param errors       the errors
+     * @param listPosition the list position
      */
     public void validate(List<String> errors, int listPosition) {
         if (!stringHasValue(tableName)) {
@@ -863,8 +903,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the column renaming rule.
      *
-     * @param columnRenamingRule
-     *            the new column renaming rule
+     * @param columnRenamingRule the new column renaming rule
      */
     public void setColumnRenamingRule(ColumnRenamingRule columnRenamingRule) {
         this.columnRenamingRule = columnRenamingRule;
@@ -882,8 +921,7 @@ public class TableConfiguration extends PropertyHolder {
     /**
      * Sets the all column delimiting enabled.
      *
-     * @param isAllColumnDelimitingEnabled
-     *            the new all column delimiting enabled
+     * @param isAllColumnDelimitingEnabled the new all column delimiting enabled
      */
     public void setAllColumnDelimitingEnabled(
             boolean isAllColumnDelimitingEnabled) {

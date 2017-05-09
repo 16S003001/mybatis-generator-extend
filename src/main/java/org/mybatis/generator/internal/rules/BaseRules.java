@@ -85,6 +85,15 @@ public abstract class BaseRules implements Rules {
         return tableConfiguration.isInsertStatementEnabled();
     }
 
+    @Override
+    public boolean generateSelectSelective() {
+        if(isModelOnly){
+            return false;
+        }
+
+        return tableConfiguration.isSelectSelectiveStatementEnabled();
+    }
+
     /**
      * Calculates the class that contains all fields. This class is used as the
      * insert statement parameter, as well as the returned value from the select
