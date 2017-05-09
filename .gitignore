@@ -10,3 +10,6 @@ buildNumber.properties
 .idea/
 *.iml
 .DS_Store
+/src/main/java/com/
+/src/main/resources/com/
+/src/main/java/Executor.java
