@@ -31,7 +31,8 @@ public class SelectSelectiveElementGenerator extends AbstractXmlElementGenerator
 
         StringBuilder sb = new StringBuilder();
 
-        answer.addElement(new TextElement("select *"));
+        answer.addElement(new TextElement("select"));
+        answer.addElement(getBaseColumnListElement());
         answer.addElement(new TextElement("from " + introspectedTable.getFullyQualifiedTableNameAtRuntime()));
         answer.addElement(new TextElement("where 1 = 1"));
 
