@@ -71,13 +71,13 @@
         <repository>
             <id>SES Releases</id>
             <name>SES Releases</name>
-            <url>http://202.118.232.9:8081/nexus/content/repositories/ses-releases</url>
+            <url>http://202.118.232.9:10001/nexus/content/repositories/ses-releases</url>
         </repository>
 
         <snapshotRepository>
             <id>SES Snapshots</id>
             <name>SES Snapshots</name>
-            <url>http://202.118.232.9:8081/nexus/content/repositories/ses-snapshots</url>
+            <url>http://202.118.232.9:10001/nexus/content/repositories/ses-snapshots</url>
         </snapshotRepository>
 
     </distributionManagement>
@@ -86,7 +86,7 @@
         <repository>
             <id>SES Repositories</id>
             <name>SES Repositories</name>
-            <url>http://202.118.232.9:8081/nexus/content/groups/ses/</url>
+            <url>http://202.118.232.9:10001/nexus/content/groups/ses/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
